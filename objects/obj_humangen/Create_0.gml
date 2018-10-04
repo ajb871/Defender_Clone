@@ -2,6 +2,6 @@
 human_num = 10;
 global.human_y = room_height - 10;
 
-for(i = 0; i < human_num; i ++){
+for(var i = 0; i < human_num; i ++){
 	instance_create_depth(0,0,2,obj_human);
 }

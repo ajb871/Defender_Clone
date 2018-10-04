@@ -42,7 +42,7 @@
             "Key": "140fb475-4724-43d8-a7c0-6649d4ed09a5",
             "Value": {
                 "id": "8c6344cb-d1d4-44c1-841e-d924d9319259",
-                "resourcePath": "objects\\obj_enemiesParent\\obj_enemiesParent.yy",
+                "resourcePath": "objects\\obj_enemies\\obj_enemies.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -276,6 +276,14 @@
                 "id": "f5b786a3-a653-4609-8680-d544a5254690",
                 "resourcePath": "views\\b6c50046-176b-4937-a889-4a43693712d8.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "b8372f65-58d6-4246-991f-a7fdbbb5f4f7",
+            "Value": {
+                "id": "36eb4b81-fd57-41e8-a9e7-a20b429564a4",
+                "resourcePath": "objects\\obj_explosion\\obj_explosion.yy",
+                "resourceType": "GMObject"
             }
         },
         {

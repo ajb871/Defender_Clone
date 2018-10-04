@@ -50,7 +50,9 @@ if keyboard_check_pressed(vk_control){ //CTRL to fire
 
 
 
-
-
-
+///////////////////////////////Enemy Collision /////////////////////////////////
+if collision_circle(x,y,12,obj_enemies,false,false){
+	
+	alarm[1] = 3 * room_speed;
+}
 
