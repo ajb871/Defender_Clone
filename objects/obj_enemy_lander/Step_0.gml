@@ -1,20 +1,27 @@
 //Destroy when hit by projectile
-if collision_circle(x,y,4,obj_playerprojectile,false,false) {
+if !capturing & collision_circle(x,y,9,obj_playerprojectile,false,false) {
+	bullet = instance_nearest(x,y,obj_playerprojectile);
+	instance_destroy(bullet);
 	instance_destroy();
 	global.points += 150;
 }
 
 
 //CAPTURING HUMANS, ROAMING, and FIRING//
+if instance_exists(obj_human){
 	near_human = instance_nearest(x,y,obj_human); //find the nearest human
 	
-	if (!capturing) & (distance_to_point(near_human.x, near_human.y) < 50) & (!near_human.being_captured){ //when close enough to one human who ISNOT being captured
+	//Not currently capturing a human, is near a human, the human is not being captured, and no other humans are being captured...
+	if (!capturing) & (distance_to_point(near_human.x, near_human.y) < 55) & (!near_human.being_captured) & (!global.any_capturing){ //when close enough to one human who ISNOT being captured
+			if global.any_capturing{
+				roaming = true;
+				seeking_human = false;
+			}
 			roaming = false;
 			seeking_human = true;
-			show_debug_message("seeking human...")
 			move_towards_point(near_human.x,near_human.y, lander_yspd); //move towards them
 			//Once the lander hits:
-			if (distance_to_point(near_human.x, near_human.y) < 5) & (!near_human.being_captured){
+			if (distance_to_point(near_human.x, near_human.y) < 10) & (!near_human.being_captured){
 				captured_human = near_human; //Set them to "captured human"
 				capturing = true; //now capturing!
 				roaming = false;
@@ -36,7 +43,6 @@ if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 				lander_ydir *= -1;
 			}
 			x += lander_xspd * lander_xdir;
-			show_debug_message("roaming...");
 			///////////////Firing Projectiles///////////////
 				//if near human and enemy is ON SCREEN and FIRE_READY is true (to control fire rate)
 				if (distance_to_point(obj_human.x,obj_human.y) < 80) & (!seeking_human) & (fire_ready){
@@ -49,10 +55,8 @@ if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 	
 	
 	if (capturing) { //If currently capturing human
-		roaming = false;
-		show_debug_message("currently capturing");
 		y -= 1.2; //Go straight up with human
-		captured_human.y = y; //human follows
+		captured_human.y = y + captured_human.sprite_height; //human follows
 		if y < 38 + sprite_height/2 { //Once lander reaches top of screen
 			instance_create_depth(x, y, 0, obj_enemy_mutant); //spawn mutant
 			instance_destroy(captured_human.id); //destroy human
@@ -60,8 +64,11 @@ if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 		}
 		
 		//If hit by bullet WHILE capturing human
-		if collision_circle(x,y,4,obj_playerprojectile, false, false){
+		if collision_circle(x,y,6,obj_playerprojectile, false, false){
+			show_debug_message("HUMAN FALLING NOW");
 			captured_human.fall_height = y; //set height of human during hit
+			near_human.fall_height = y;
+			near_human.falling=true;
 			captured_human.falling = true; //trigger falling for human
 			instance_destroy(); //destroy this lander
 		}
@@ -69,6 +76,7 @@ if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 		//If human is already being captured 
 
 	}	
+}
 	
 	
 	

@@ -63,6 +63,14 @@
             }
         },
         {
+            "Key": "144fab38-4463-4acb-b2da-8e4f6d1f3813",
+            "Value": {
+                "id": "cf464057-5063-400a-8914-7483fe8abbf2",
+                "resourcePath": "rooms\\human_end_screen\\human_end_screen.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
             "Key": "168f3695-3d35-4617-9442-cdf43aa9c3e7",
             "Value": {
                 "id": "0b002621-a42d-41e8-8497-a96ed8ced6e6",

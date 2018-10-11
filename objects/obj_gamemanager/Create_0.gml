@@ -9,3 +9,7 @@ global.scroll_speed = 0;
 
 //Total game time for enemy spawning times
 global.game_time = 0;
+
+
+//Var for whether or not anyone is being captured
+global.any_capturing = false;

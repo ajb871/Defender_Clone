@@ -1,5 +1,5 @@
 //Create 10 humans at the start of each round
-human_num = 10;
+human_num = 15;
 global.ground = room_height - 20;
 
 for(var i = 0; i < human_num; i ++){

@@ -10,7 +10,6 @@ if x < global.left_edge - sprite_width/2{
 
 //If off the ground and being dropped... (i.e. lander was shot down)
 if (falling){
-	show_debug_message("here i go");
 	//Player can "Catch" falling humans!!
 	if collision_circle(x,y, 8,obj_player, false, false){ //If player collides
 		falling = false; //no longer fallnig
@@ -45,12 +44,14 @@ if (carried){
 		show_debug_message("grounded human!");
 		global.points += 500; //500 pts for landing with human
 		y = global.ground; //Stay on ground
+		being_captured = false;
+		falling = false;
 		carried = false; //Reset variables
 	}
 }
 
 //Destroy when hit by player projectile (cannot be destoryed when being captured
-if !being_captured & collision_circle(x,y,4,obj_playerprojectile,false,false) {
+if !being_captured & collision_circle(x,y,6,obj_playerprojectile,false,false) {
 	instance_destroy();
 	global.points -= 150; //subtract points
 }

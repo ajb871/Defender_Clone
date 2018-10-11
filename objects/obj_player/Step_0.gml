@@ -48,15 +48,17 @@ if keyboard_check_pressed(vk_control){ //CTRL to fire
 
 ///////////////////////////HyperSpace///////////////////////////////
 //Pressing Spacebar randomly teleports player
-if keyboard_check_pressed(vk_space){
+//Can only be used three times to avoid death
+if keyboard_check_pressed(vk_space) & hyperspace_num > 0{
 	global.scroll_speed += random_range(100,300);
 	y = random_range(36 + sprite_height/2, room_height - sprite_height/2);
+	hyperspace_num -= 1; //One use
 }
 
 
 
 ///////////////////////////////Enemy Collision /////////////////////////////////
-if collision_circle(x,y,4,obj_enemies,false,false){
+if collision_circle(x,y,2,obj_enemies,false,false){
 	show_debug_message("ouch");
 	global.player_hit = true;
 }
