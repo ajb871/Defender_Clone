@@ -1,13 +1,14 @@
 //Destroy when hit by projectile
 if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 	instance_destroy();
+	global.points += 150;
 }
 
 
 //CAPTURING HUMANS, ROAMING, and FIRING//
 	near_human = instance_nearest(x,y,obj_human); //find the nearest human
 	
-	if (!capturing) & (distance_to_point(near_human.x, near_human.y) < 70){ //when close enough to one human
+	if (!capturing) & (distance_to_point(near_human.x, near_human.y) < 70) & (near_human.being_captured == false){ //when close enough to one human who ISNOT being captured
 			roaming = false;
 			seeking_human = true;
 			show_debug_message("seeking human...")

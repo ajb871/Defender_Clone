@@ -49,3 +49,8 @@ if (carried){
 	}
 }
 
+//Destroy when hit by player projectile
+if collision_circle(x,y,4,obj_playerprojectile,false,false) {
+	instance_destroy();
+	global.points -= 150; //subtract points
+}

@@ -6,6 +6,8 @@ if room == start_screen{
 } 
 
 if room == game{
+
+	
 	global.game_time += (1 / room_speed); //seconds
 	if keyboard_check(vk_escape) {
 		game_end();
@@ -17,13 +19,15 @@ if room == game{
 	if keyboard_check(vk_end){
 		window_set_fullscreen(false);
 	}
+	
+	if instance_number(obj_human) < 0 {
+		room_goto(end_screen);
+	}
 
 }
 
 //End game when out of Lives
-if global.player_lives == 0 {
-	room_goto(end_screen);
-}
+
 
 if room == end_screen{
 	if keyboard_check(ord("1")){

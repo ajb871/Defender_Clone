@@ -1,8 +1,5 @@
-/*x = random_range(global.left_edge,global.right_edge);
-y = random_range(40,160);*/
-
-x = 150;
-y = 180;
+x = random_range(global.left_edge,global.right_edge);
+y = random_range(40,160);
 
 //Starting speed of lander
 lander_yspd = random_range(0.5,2);

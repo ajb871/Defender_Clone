@@ -63,6 +63,14 @@
             }
         },
         {
+            "Key": "168f3695-3d35-4617-9442-cdf43aa9c3e7",
+            "Value": {
+                "id": "0b002621-a42d-41e8-8497-a96ed8ced6e6",
+                "resourcePath": "scripts\\human_end\\human_end.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "20f8ef94-0e0b-4787-9ee8-505a0051f040",
             "Value": {
                 "id": "5b5c56b3-3ffb-41d8-b737-7aa38953ee06",
@@ -204,6 +212,22 @@
                 "id": "79334235-7ef4-442b-a40c-dce6b4f28192",
                 "resourcePath": "views\\724ceb9f-48a0-4bb4-95ce-f79d27767023.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "73f5943d-8c5d-495f-8703-d0bf2f0f71b3",
+            "Value": {
+                "id": "e63d43be-2320-4f63-b27b-8359bb8072f2",
+                "resourcePath": "fonts\\font_2\\font_2.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "7e4ca489-b5c6-4c75-b777-037f04f4781f",
+            "Value": {
+                "id": "4e6fb00d-2088-437d-8048-722a0e45cd48",
+                "resourcePath": "objects\\object14\\object14.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -456,7 +480,8 @@
         }
     ],
     "script_order": [
-        "0f2e18f3-9f7d-408f-8b29-aca95d590815"
+        "0f2e18f3-9f7d-408f-8b29-aca95d590815",
+        "168f3695-3d35-4617-9442-cdf43aa9c3e7"
     ],
     "tutorial": ""
 }
