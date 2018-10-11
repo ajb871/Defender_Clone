@@ -7,8 +7,11 @@ if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 //CAPTURING HUMANS, ROAMING, and FIRING//
 	near_human = instance_nearest(x,y,obj_human); //find the nearest human
 	
-	if (!capturing) & (roaming) & (distance_to_point(near_human.x, near_human.y) < 70){ //when close enough to one human
-			move_towards_point(near_human.x,near_human.y, lander_yspd + 1); //move towards them
+	if (!capturing) & (distance_to_point(near_human.x, near_human.y) < 70){ //when close enough to one human
+			roaming = false;
+			seeking_human = true;
+			show_debug_message("seeking human...")
+			move_towards_point(near_human.x,near_human.y, lander_yspd + 0.5); //move towards them
 			//Once the lander hits:
 			if distance_to_point(near_human.x, near_human.y) < 5{
 				captured_human = near_human; //Set them to "captured human"
@@ -22,20 +25,21 @@ if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 	
 
 	
-	if (roaming) & (!capturing) { //if not near humans, and roaming
+	if (roaming) & (!capturing) & (!seeking_human) { //if not near humans, and roaming
 			//Move around inbetween 30 & 180
 			y += lander_yspd * lander_ydir;
 			if y > 180{
 				lander_ydir *= random_range(-1, 1); //either keep going left/right or move up
-			} else if y < 30 {
+			} else if (y < 38 + sprite_height/2) {
 				lander_ydir *= -1;
 			}
 			x += lander_xspd * lander_xdir;
 			show_debug_message("roaming...");
 			///////////////Firing Projectiles///////////////
 				//if near human and enemy is ON SCREEN and FIRE_READY is true (to control fire rate)
-				if (distance_to_point(obj_human.x,obj_human.y) < 80) & (0 < x < room_width) & (fire_ready){
+				if (distance_to_point(obj_human.x,obj_human.y) < 80)& (!seeking_human){
 					instance_create_depth(x,y,0,obj_enemyprojectile);//Fire at player!
+					show_debug_message("FIRING @ PLAYER!");
 					fire_ready = false;
 					fire_timer = 2.5 * room_speed;
 				}

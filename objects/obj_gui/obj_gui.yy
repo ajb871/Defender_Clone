@@ -5,7 +5,7 @@
     "name": "obj_gui",
     "eventList": [
         {
-            "id": "8c0726e6-c774-48b0-8afc-7293cf771811",
+            "id": "cfb969ac-e679-4fb3-a799-32d1b95fbb59",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,

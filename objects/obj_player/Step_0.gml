@@ -23,8 +23,9 @@ image_xscale = global.player_dir; //-1 or 1 => sprite faces left or right
 
 if keyboard_check(vk_alt){ //When alt is held
 	global.x_velocity += global.accel * global.player_dir; //Add acceleration to x_velocity
-														   //and multiply by player_dir to go either LEFT or RIGHT (-1 or 1)
+	sprite_index = spr_player_thrust;							 //and multiply by player_dir to go either LEFT or RIGHT (-1 or 1)
 } else { //When alt is not held
+	sprite_index = spr_player;
 	if abs(global.x_velocity) > 0{ //if player is MOVING either direction (speed is over 0)
 		//subtract acceleration TIMES the sign (+ or -) of velocity to slow down
 		global.x_velocity -= global.accel * sign(global.x_velocity);

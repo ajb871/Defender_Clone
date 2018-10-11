@@ -17,7 +17,7 @@ capturing = false;
 
 //Alternate between seeking humans "roaming" to lower difficulty
 roaming = true;
-seeking = false;
+seeking_human = false;
 
 
 //Timer to control projectile firing
