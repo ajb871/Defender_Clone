@@ -6,7 +6,7 @@ lander_yspd = random_range(0.5,2);
 lander_xspd = random_range(0,1.5);
 
 //Randomize starting directions (up/down left/right)
-lander_ydir = choose(-1,1);
+lander_ydir = choose(-1,1,1,1);
 lander_xdir = choose(-1,1);
 
 //Know when a human has been "grabbed" by a lander

@@ -1,6 +1,6 @@
 if !global.player_hit {
 //////////////////////////Simple Up and Down movement://////////////////////////////
-if keyboard_check(vk_up) && y > 36 - sprite_height/2{
+if keyboard_check(vk_up) && y > 36 + sprite_height/2{
 	y -= y_spd;
 }
 if keyboard_check(vk_down) && y < room_height - sprite_height/2{
@@ -41,12 +41,18 @@ global.scroll_speed = global.x_velocity;
 
 
 
-
-
 ///////////////////////////////Projectile Firing /////////////////////////////////
 if keyboard_check_pressed(vk_control){ //CTRL to fire
 	instance_create_depth(x, y, 1, obj_playerprojectile); //create projectile object @ player position
 }
+
+///////////////////////////HyperSpace///////////////////////////////
+//Pressing Spacebar randomly teleports player
+if keyboard_check_pressed(vk_space){
+	global.scroll_speed += random_range(100,300);
+	y = random_range(36 + sprite_height/2, room_height - sprite_height/2);
+}
+
 
 
 ///////////////////////////////Enemy Collision /////////////////////////////////

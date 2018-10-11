@@ -8,16 +8,17 @@ if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 //CAPTURING HUMANS, ROAMING, and FIRING//
 	near_human = instance_nearest(x,y,obj_human); //find the nearest human
 	
-	if (!capturing) & (distance_to_point(near_human.x, near_human.y) < 70) & (near_human.being_captured == false){ //when close enough to one human who ISNOT being captured
+	if (!capturing) & (distance_to_point(near_human.x, near_human.y) < 50) & (!near_human.being_captured){ //when close enough to one human who ISNOT being captured
 			roaming = false;
 			seeking_human = true;
 			show_debug_message("seeking human...")
-			move_towards_point(near_human.x,near_human.y, lander_yspd + 0.5); //move towards them
+			move_towards_point(near_human.x,near_human.y, lander_yspd); //move towards them
 			//Once the lander hits:
-			if distance_to_point(near_human.x, near_human.y) < 5{
+			if (distance_to_point(near_human.x, near_human.y) < 5) & (!near_human.being_captured){
 				captured_human = near_human; //Set them to "captured human"
 				capturing = true; //now capturing!
 				roaming = false;
+				captured_human.being_captured = true;
 				show_debug_message("CAPTURED HUMAN");
 			}
 	} else {
@@ -38,24 +39,21 @@ if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 			show_debug_message("roaming...");
 			///////////////Firing Projectiles///////////////
 				//if near human and enemy is ON SCREEN and FIRE_READY is true (to control fire rate)
-				if (distance_to_point(obj_human.x,obj_human.y) < 80)& (!seeking_human){
+				if (distance_to_point(obj_human.x,obj_human.y) < 80) & (!seeking_human) & (fire_ready){
 					instance_create_depth(x,y,0,obj_enemyprojectile);//Fire at player!
 					show_debug_message("FIRING @ PLAYER!");
 					fire_ready = false;
 					fire_timer = 2.5 * room_speed;
 				}
-	}
-	
-	
-	
+	}	
 	
 	
 	if (capturing) { //If currently capturing human
 		roaming = false;
 		show_debug_message("currently capturing");
-		y -= 2; //Go straight up
-		captured_human.y -= 2;
-		if y < 0 { //Once lander reaches top of screen
+		y -= 1.2; //Go straight up with human
+		captured_human.y = y; //human follows
+		if y < 38 + sprite_height/2 { //Once lander reaches top of screen
 			instance_create_depth(x, y, 0, obj_enemy_mutant); //spawn mutant
 			instance_destroy(captured_human.id); //destroy human
 			instance_destroy(); //destroy self
@@ -67,6 +65,9 @@ if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 			captured_human.falling = true; //trigger falling for human
 			instance_destroy(); //destroy this lander
 		}
+		
+		//If human is already being captured 
+
 	}	
 	
 	
