@@ -10,6 +10,7 @@ if room == game{
 	if keyboard_check(vk_escape) {
 		game_end();
 	}
+	//Toggle fullscreen with home & end:
 	if keyboard_check(vk_home){
 		window_set_fullscreen(true);
 	}
@@ -19,9 +20,21 @@ if room == game{
 
 }
 
-if room == end_screen{
+//End game when out of Lives
+if global.player_lives == 0 {
+	room_goto(end_screen);
 }
 
-//this_room = room_get_name(room);
+if room == end_screen{
+	if keyboard_check(ord("1")){
+		//Reset all variables
+		global.points = 0;
+		global.player_lives = 3;
+		global.game_time = 0;
+		room_goto(game);
+	}
+}
+
+
 
 

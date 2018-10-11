@@ -1,6 +1,6 @@
 if !global.player_hit {
 //////////////////////////Simple Up and Down movement://////////////////////////////
-if keyboard_check(vk_up) && y > 30 - sprite_height/2{
+if keyboard_check(vk_up) && y > 36 - sprite_height/2{
 	y -= y_spd;
 }
 if keyboard_check(vk_down) && y < room_height - sprite_height/2{
@@ -56,10 +56,11 @@ if collision_circle(x,y,4,obj_enemies,false,false){
 
 }//ifnothit 
 
-//When Hit!!
+
+//When Hit!!!!!!!!!!!!!!!!!
 else if global.player_hit {
 	global.scroll_speed = 0; //stop moving
 	sprite_index = spr_playerexp; //play explosion animation
-	instance_create_depth(x,y,0,obj_explosion); //explosion particle object (NOT IN USE)
+	instance_create_depth(x,y,0,obj_explosion); //explosion particle object (TRIGGERS LEVEL RESET IN OBJ)
 }
 

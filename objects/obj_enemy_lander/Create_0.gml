@@ -21,4 +21,5 @@ seeking = false;
 
 
 //Timer to control projectile firing
-fire_ready = false;
+fire_ready = true;
+fire_timer = 0; //every 2.5 seconds

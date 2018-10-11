@@ -33,9 +33,11 @@ if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 			x += lander_xspd * lander_xdir;
 			show_debug_message("roaming...");
 			///////////////Firing Projectiles///////////////
-				//if near human and FIRE_READY is true (to control fire rate)
-				if (distance_to_point(obj_human.x,obj_human.y) < 80) & fire_ready{
-					instance_create_depth(x,y,0,obj_enemyprojectile);
+				//if near human and enemy is ON SCREEN and FIRE_READY is true (to control fire rate)
+				if (distance_to_point(obj_human.x,obj_human.y) < 80) & (0 < x < room_width) & (fire_ready){
+					instance_create_depth(x,y,0,obj_enemyprojectile);//Fire at player!
+					fire_ready = false;
+					fire_timer = 2.5 * room_speed;
 				}
 	}
 	
@@ -63,16 +65,20 @@ if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 	}	
 	
 	
+	
+//////Firing speed timer!///////
+//Only every 2.5 can the enemy fire
+if fire_timer > 0 { //If counting down
+	fire_ready = false; //no firing
+	fire_timer -= 1;
+} if fire_timer < 0 {  //Once timer is done
+	fire_ready = true; //Ready to fire!
+	fire_timer = 2.5 * room_speed; //reset timer
+}
 
 
 
-
-
-
-
-
-
-//Move with scroll_speed
+//////Move with scroll_speed//////
 x -= global.scroll_speed;
 
 if x > global.right_edge + sprite_width/2{
