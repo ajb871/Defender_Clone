@@ -49,18 +49,17 @@ if keyboard_check_pressed(vk_control){ //CTRL to fire
 
 
 ///////////////////////////////Enemy Collision /////////////////////////////////
-if collision_circle(x,y,12,obj_enemies,false,false){
+if collision_circle(x,y,4,obj_enemies,false,false){
 	show_debug_message("ouch");
 	global.player_hit = true;
 }
 
 }//ifnothit 
 
+//When Hit!!
 else if global.player_hit {
-	global.scroll_speed = 0;
-	sprite_index = spr_playerexp;
-	instance_create_depth(x,y,0,obj_explosion);
+	global.scroll_speed = 0; //stop moving
+	sprite_index = spr_playerexp; //play explosion animation
+	instance_create_depth(x,y,0,obj_explosion); //explosion particle object (NOT IN USE)
 }
-
-show_debug_message(global.player_lives);
 

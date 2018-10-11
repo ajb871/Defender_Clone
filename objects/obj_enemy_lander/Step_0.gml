@@ -3,19 +3,26 @@ if collision_circle(x,y,4,obj_playerprojectile,false,false) {
 	instance_destroy();
 }
 
-//Wait for humans to be generated
-if instance_exists(obj_human){
-	near_human = instance_nearest(x,y,obj_human); //find the nearest human
 
-	if capturing == false{ //If NOT currently capturing
-		if distance_to_point(near_human.x, near_human.y) < 90{ //when close enough to one human
+//CAPTURING HUMANS, ROAMING, and FIRING//
+	near_human = instance_nearest(x,y,obj_human); //find the nearest human
+	
+	if (!capturing) & (roaming) & (distance_to_point(near_human.x, near_human.y) < 70){ //when close enough to one human
 			move_towards_point(near_human.x,near_human.y, lander_yspd + 1); //move towards them
 			//Once the lander hits:
-			if collision_circle(x,y, 20, near_human, false, false){
-				capturing = true;
+			if distance_to_point(near_human.x, near_human.y) < 5{
+				captured_human = near_human; //Set them to "captured human"
+				capturing = true; //now capturing!
+				roaming = false;
+				show_debug_message("CAPTURED HUMAN");
 			}
-		}
-		else { //if not near humans
+	} else {
+		move_towards_point(near_human.x, near_human.y, 0);
+	}
+	
+
+	
+	if (roaming) & (!capturing) { //if not near humans, and roaming
 			//Move around inbetween 30 & 180
 			y += lander_yspd * lander_ydir;
 			if y > 180{
@@ -24,15 +31,42 @@ if instance_exists(obj_human){
 				lander_ydir *= -1;
 			}
 			x += lander_xspd * lander_xdir;
+			show_debug_message("roaming...");
+			///////////////Firing Projectiles///////////////
+				//if near human and FIRE_READY is true (to control fire rate)
+				if (distance_to_point(obj_human.x,obj_human.y) < 80) & fire_ready{
+					instance_create_depth(x,y,0,obj_enemyprojectile);
+				}
+	}
+	
+	
+	
+	
+	
+	if (capturing) { //If currently capturing human
+		roaming = false;
+		show_debug_message("currently capturing");
+		y -= 2; //Go straight up
+		captured_human.y -= 2;
+		if y < 0 { //Once lander reaches top of screen
+			instance_create_depth(x, y, 0, obj_enemy_mutant); //spawn mutant
+			instance_destroy(captured_human.id); //destroy human
+			instance_destroy(); //destroy self
 		}
-	} else if capturing == true { //If capturing human
-		y -= lander_yspd; //Go straight up
-		if y < 0 { //Once lander reaches top of screen, spand mutant & destroy this instance
-			instance_create_depth(x, y, 0, obj_enemy_mutant);
-			instance_destroy();
+		
+		//If hit by bullet WHILE capturing human
+		if collision_circle(x,y,4,obj_playerprojectile, false, false){
+			captured_human.fall_height = y; //set height of human during hit
+			captured_human.falling = true; //trigger falling for human
+			instance_destroy(); //destroy this lander
 		}
 	}	
-}
+	
+	
+
+
+
+
 
 
 
