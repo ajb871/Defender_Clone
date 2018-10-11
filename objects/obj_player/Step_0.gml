@@ -1,3 +1,4 @@
+if !global.player_hit {
 //////////////////////////Simple Up and Down movement://////////////////////////////
 if keyboard_check(vk_up) && y > 30 - sprite_height/2{
 	y -= y_spd;
@@ -5,8 +6,6 @@ if keyboard_check(vk_up) && y > 30 - sprite_height/2{
 if keyboard_check(vk_down) && y < room_height - sprite_height/2{
 	y += y_spd
 }
-
-
 
 
 //Direction switch with Z
@@ -49,13 +48,19 @@ if keyboard_check_pressed(vk_control){ //CTRL to fire
 }
 
 
-
 ///////////////////////////////Enemy Collision /////////////////////////////////
 if collision_circle(x,y,12,obj_enemies,false,false){
-	instance_create_depth(x,y,0,obj_explosion); //create explosion
-	alarm[0] = 3 * room_speed; //wait 3 seconds
-	global.player_lives -= 1;
-	room_restart();
-	show_debug_message(global.player_lives);
+	show_debug_message("ouch");
+	global.player_hit = true;
 }
+
+}//ifnothit 
+
+else if global.player_hit {
+	global.scroll_speed = 0;
+	sprite_index = spr_playerexp;
+	instance_create_depth(x,y,0,obj_explosion);
+}
+
+show_debug_message(global.player_lives);
 

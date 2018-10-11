@@ -31,11 +31,27 @@
     },
     "resources": [
         {
+            "Key": "056f547d-e34c-4af4-baac-309751eee52b",
+            "Value": {
+                "id": "ed1683e7-71ba-49bc-bbce-c7c0a5799df5",
+                "resourcePath": "sprites\\spr_playerexp\\spr_playerexp.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "0c5406c6-4e5f-4a0e-8590-41987579fac4",
             "Value": {
                 "id": "4117d944-560c-43dc-a976-0f4c16d9adf1",
                 "resourcePath": "views\\0c5406c6-4e5f-4a0e-8590-41987579fac4.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "0f2e18f3-9f7d-408f-8b29-aca95d590815",
+            "Value": {
+                "id": "687a2841-e8c4-412c-85e3-85c0451143c7",
+                "resourcePath": "scripts\\explosion\\explosion.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -151,6 +167,14 @@
             }
         },
         {
+            "Key": "5fa4fd4b-d050-4bbb-bcb2-79bec28790c3",
+            "Value": {
+                "id": "a7956c53-7cb1-4424-84ed-c72eadbedb9c",
+                "resourcePath": "notes\\questions.yy",
+                "resourceType": "GMNotes"
+            }
+        },
+        {
             "Key": "60efe0dd-9dd6-40a5-b526-e74cf26d4408",
             "Value": {
                 "id": "14952808-67cd-490c-9f81-aa85b1a26b4f",
@@ -263,6 +287,14 @@
             }
         },
         {
+            "Key": "af8bb4c2-6c67-49c1-916e-c3e1cded1824",
+            "Value": {
+                "id": "4d6767a7-4f32-456f-a6aa-864cc05f4dba",
+                "resourcePath": "sprites\\spr_enemy_mutant\\spr_enemy_mutant.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "afeb5f74-1267-472b-b16e-97ea1937132e",
             "Value": {
                 "id": "649b8dbb-1824-40f0-8ba7-c5347e49b26b",
@@ -324,6 +356,14 @@
                 "id": "db37a23b-e7f2-429b-a898-5a2bd99bcdc9",
                 "resourcePath": "objects\\obj_enemy_mutant\\obj_enemy_mutant.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "d7d5a0f9-5b8b-47c3-8aeb-d570c07b3c1d",
+            "Value": {
+                "id": "bc9dfe86-1d15-4883-913d-7e262172642b",
+                "resourcePath": "sprites\\spr_explosion\\spr_explosion.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -392,7 +432,7 @@
         }
     ],
     "script_order": [
-        
+        "0f2e18f3-9f7d-408f-8b29-aca95d590815"
     ],
     "tutorial": ""
 }
